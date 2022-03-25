@@ -1,7 +1,7 @@
 # 🐻 Jetpack Compose Samples
 
 <h4 align="left">
-  You can create this projects step by step with
+  You can create these projects step by step with
 <a href="https://hepsiburada.udemy.com/course/kotling-android-jetpack-compose-/learn/lecture/29297358?start=675#overview">Udemy Course!</a>
 </h4></br>
 
