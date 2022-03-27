@@ -37,7 +37,5 @@ fun RoundedIconButton(
             imageVector = imageVector, contentDescription = "Plus or minus Icon",
             tint = tint
         )
-
     }
-
 }

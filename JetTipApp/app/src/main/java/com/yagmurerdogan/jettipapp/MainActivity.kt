@@ -125,7 +125,6 @@ fun MainContent() {
             totalPerPersonState = totalPerPersonState
         )
     }
-
 }
 
 @ExperimentalComposeUiApi
@@ -277,7 +276,6 @@ fun BillForm(
 
                         }
                     )
-
                 }
 
             } else {
