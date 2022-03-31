@@ -42,11 +42,9 @@ fun NoteScreen(
     var title by remember {
         mutableStateOf("")
     }
-
     var description by remember {
         mutableStateOf("")
     }
-
     val context = LocalContext.current
 
     Column(modifier = Modifier.padding(6.dp)) {
@@ -63,7 +61,7 @@ fun NoteScreen(
             backgroundColor = Color(0xFFDADFE3)
         )
 
-        //Content
+        // Content
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -75,12 +73,11 @@ fun NoteScreen(
                 ),
                 text = title,
                 label = "Title",
-                onTextChanged = {
+                onTextChange = {
                     if (it.all { char ->
                             char.isLetter() || char.isWhitespace()
                         }) title = it
-                }
-            )
+                })
 
             NoteInputText(
                 modifier = Modifier.padding(
@@ -89,15 +86,13 @@ fun NoteScreen(
                 ),
                 text = description,
                 label = "Add a note",
-                onTextChanged = {
+                onTextChange = {
                     if (it.all { char ->
                             char.isLetter() || char.isWhitespace()
                         }) description = it
-                }
-            )
+                })
 
-            NoteButton(
-                text = "Save",
+            NoteButton(text = "Save",
                 onClick = {
                     if (title.isNotEmpty() && description.isNotEmpty()) {
                         onAddNote(
@@ -108,24 +103,18 @@ fun NoteScreen(
                         )
                         title = ""
                         description = ""
-
                         Toast.makeText(
-                            context,
-                            "Note Added",
+                            context, "Note Added",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-                }
-            )
+                })
         }
         Divider(modifier = Modifier.padding(10.dp))
-
         LazyColumn {
             items(notes) { note ->
                 NoteRow(note = note,
-                    onNoteClicked = {
-                        onRemoveNote(note)
-                    })
+                    onNoteClicked = { onRemoveNote(it) })
             }
         }
     }
@@ -135,9 +124,5 @@ fun NoteScreen(
 @Preview(showBackground = true)
 @Composable
 fun NotesScreenPreview() {
-    NoteScreen(
-        notes = NotesDataSource().loadNotes(),
-        onAddNote = {},
-        onRemoveNote = {}
-    )
+    NoteScreen(notes = NotesDataSource().loadNotes(), onAddNote = {}, onRemoveNote = {})
 }

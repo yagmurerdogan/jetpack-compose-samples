@@ -31,13 +31,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetNoteAppTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    val noteViewModel: NoteViewModel by viewModels() //not have to do
+                Surface(color = MaterialTheme.colors.background) {
                     //val noteViewModel = viewModel<NoteViewModel>() //also works
+                    val noteViewModel = viewModel<NoteViewModel>()
                     NotesApp(noteViewModel)
+
                 }
             }
         }
@@ -49,11 +47,9 @@ class MainActivity : ComponentActivity() {
 fun NotesApp(noteViewModel: NoteViewModel) {
     val notesList = noteViewModel.noteList.collectAsState().value
 
-    NoteScreen(
-        notes = notesList,
-        onAddNote = { noteViewModel.addNote(it) },
-        onRemoveNote = { noteViewModel.removeNote(it) }
-    )
+    NoteScreen(notes = notesList,
+        onRemoveNote = { noteViewModel.removeNote(it) },
+        onAddNote = { noteViewModel.addNote(it) })
 
 }
 

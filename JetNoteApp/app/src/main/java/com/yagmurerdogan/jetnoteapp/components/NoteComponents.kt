@@ -25,7 +25,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.yagmurerdogan.jetnoteapp.model.Note
 import com.yagmurerdogan.jetnoteapp.util.formatDate
-import java.time.format.DateTimeFormatter
 
 @ExperimentalComposeUiApi
 @Composable
@@ -34,15 +33,14 @@ fun NoteInputText(
     text: String,
     label: String,
     maxLine: Int = 1,
-    onTextChanged: (String) -> Unit,
-    onImeiAction: () -> Unit = {}
+    onTextChange: (String) -> Unit,
+    onImeAction: () -> Unit = {}
 ) {
-
     val keyboardController = LocalSoftwareKeyboardController.current
 
     TextField(
         value = text,
-        onValueChange = onTextChanged,
+        onValueChange = onTextChange,
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = Color.Transparent
         ),
@@ -52,7 +50,7 @@ fun NoteInputText(
             imeAction = ImeAction.Done
         ),
         keyboardActions = KeyboardActions(onDone = {
-            onImeiAction()
+            onImeAction()
             keyboardController?.hide()
         }),
         modifier = modifier
@@ -72,7 +70,7 @@ fun NoteButton(
         enabled = enabled,
         modifier = modifier
     ) {
-        Text(text = text)
+        Text(text)
     }
 
 }
@@ -91,26 +89,19 @@ fun NoteRow(
         color = Color(0xFFDFE6EB),
         elevation = 6.dp
     ) {
-        Column(
-            modifier
-                .clickable { }
-                .padding(horizontal = 14.dp, vertical = 6.dp),
+        Column(modifier
+            .clickable { onNoteClicked(note) }
+            .padding(horizontal = 14.dp, vertical = 6.dp),
             horizontalAlignment = Alignment.Start) {
             Text(
                 text = note.title,
                 style = MaterialTheme.typography.subtitle2
             )
-            Text(
-                text = note.description,
-                style = MaterialTheme.typography.subtitle1
-            )
-
+            Text(text = note.description, style = MaterialTheme.typography.subtitle1)
             Text(
                 text = formatDate(note.entryDate.time),
                 style = MaterialTheme.typography.caption
             )
-
         }
     }
-
 }
