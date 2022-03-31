@@ -24,3 +24,10 @@ Kotlin Jetpack Compose: Firebase Firestore, Hilt &amp; Dagger, ROOM DB, ViewMode
 <p align="center">
 <img src="https://user-images.githubusercontent.com/47380312/160408155-7500f699-d078-4e69-986e-39bc6781b2ff.gif" width="32%"/>
 </p>
+
+
+<h1 align="center"> JetNoteApp 👀 </h1>
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/47380312/161059454-1dc5de8b-34cb-4f5f-b886-0da605589cbd.gif" width="32%"/>
+</p>
